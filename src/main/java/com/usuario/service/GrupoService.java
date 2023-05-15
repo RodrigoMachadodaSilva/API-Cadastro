@@ -1,5 +1,9 @@
 package com.usuario.service;
 
+import java.util.Optional;
+
+import javax.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -10,6 +14,7 @@ import com.usuario.domain.entity.Grupo;
 import com.usuario.domain.entity.Permissao;
 import com.usuario.domain.exception.EntidadeEmUsoException;
 import com.usuario.domain.exception.GrupoNaoEncontradoException;
+import com.usuario.domain.exception.NegocioException;
 import com.usuario.repository.GrupoRepository;
 
 @Service
@@ -22,9 +27,14 @@ public class GrupoService {
 
 	@Autowired
 	private PermissaoService permissaoService;
+	
+	@Autowired
+	private EntityManager manager;
 
 	@Transactional
 	public Grupo salvar(Grupo grupo) {
+		manager.detach(grupo);
+		validarGrupoExiste(grupo.getNome());
 		return grupoRepository.save(grupo);
 	}
 
@@ -60,6 +70,14 @@ public class GrupoService {
 
 	public Grupo buscarOuFalhar(Long grupoId) {
 		return grupoRepository.findById(grupoId).orElseThrow(() -> new GrupoNaoEncontradoException(grupoId));
+	}
+	
+	private Boolean validarGrupoExiste(String nome) {
+		Grupo grupoExiste = grupoRepository.findByNome(nome);
+		if(grupoExiste != null) {
+			throw new NegocioException("Grupo já cadastrado em nosso sistema");
+		}
+		return true;
 	}
 
 }

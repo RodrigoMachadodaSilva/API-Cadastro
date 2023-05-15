@@ -2,6 +2,7 @@ create table permissao (
 
 	id bigint not null auto_increment,
     nome varchar(50) not null,
+    descricao varchar(255) not null,
     
     primary key (id)
 ) engine=InnoDB default charset=utf8mb4;
@@ -10,9 +11,8 @@ create table permissao (
 create table usuario(
 	id bigint not null auto_increment,
     nome varchar(80) not null,
-    cpf varchar(80) not null,
-    senha varchar(12) not null,
-    email varchar(80) not null,
+    email varchar(80) not null, 
+    senha varchar(100) not null,
 	data_cadastro datetime not null,
 
 	

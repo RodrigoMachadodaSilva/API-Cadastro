@@ -22,7 +22,6 @@ import com.usuario.dto.SenhaInput;
 import com.usuario.dto.UsuarioComSenhaInput;
 import com.usuario.dto.UsuarioInput;
 import com.usuario.dto.UsuarioModel;
-import com.usuario.repository.UsuarioRepository;
 import com.usuario.service.UsuarioService;
 
 

@@ -11,12 +11,11 @@ import com.usuario.repository.PermissaoRepository;
 @Service
 public class PermissaoService {
 
-	@Autowired
-	private PermissaoRepository permissaoRepository;
-	
-	public Permissao buscarOuFalhar(Long permissaoId) {
-		return permissaoRepository.findById(permissaoId)
-			.orElseThrow(() -> new PermissaoNaoEncontradaException(permissaoId));
-	}
-	
+    @Autowired
+    private PermissaoRepository permissaoRepository;
+    
+    public Permissao buscarOuFalhar(Long permissaoId) {
+        return permissaoRepository.findById(permissaoId)
+            .orElseThrow(() -> new PermissaoNaoEncontradaException(permissaoId));
+    }
 }

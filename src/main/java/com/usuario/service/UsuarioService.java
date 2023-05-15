@@ -3,6 +3,7 @@ package com.usuario.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class UsuarioService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private EntityManager manager;
+	
 	@GetMapping
 	public List<Usuario> listarUsuarios(){
 		return usuarioRepository.findAll();
@@ -37,7 +41,7 @@ public class UsuarioService {
 	
 	@Transactional
 	public Usuario salvar(Usuario usuario) {
-		usuarioRepository.save(usuario);
+		manager.detach(usuario);
 		
 		Optional<Usuario> usuarioExistente = usuarioRepository.findByEmail(usuario.getEmail());
 		
@@ -84,6 +88,8 @@ public class UsuarioService {
 		return usuarioRepository.findById(usuarioId)
 			.orElseThrow(() -> new UsuarioNaoEncontradoException(usuarioId));
 	}
+	
+
 	
 }
 	
