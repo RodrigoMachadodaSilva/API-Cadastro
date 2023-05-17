@@ -17,11 +17,17 @@ Para ilustrar o projeto inclui:
  
 
 Tecnologias :
+
 Java
+
 Spring Boot
+
 Spring Data Jpa
+
 Spring Security
+
 Spring Doc
+
 My Sql
 
 Demais Funcionalidades
