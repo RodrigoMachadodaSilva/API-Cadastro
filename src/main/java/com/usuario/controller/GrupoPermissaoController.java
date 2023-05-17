@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.usuario.assembler.PermissaoModelAssembler;
 import com.usuario.domain.entity.Grupo;
 import com.usuario.dto.PermissaoModel;
+import com.usuario.openapi.controller.GrupoPermissaoControllerOpenApi;
 import com.usuario.service.GrupoService;
 
 @RestController
 @RequestMapping(value = "/grupos/{grupoId}/permissoes")
-public class GrupoPermissaoController {
+public class GrupoPermissaoController implements GrupoPermissaoControllerOpenApi {
 
 	@Autowired
 	private GrupoService grupoService;

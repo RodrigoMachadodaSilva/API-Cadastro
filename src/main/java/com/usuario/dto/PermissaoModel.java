@@ -1,5 +1,6 @@
 package com.usuario.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,7 +8,12 @@ import lombok.Setter;
 @Getter
 public class PermissaoModel {
 
-    private Long id;
-    private String nome;
-    private String descricao;	
+	@Schema(example = "1")
+	private Long id;
+
+	@Schema(example = "CONSULTAR")
+	private String nome;
+
+	@Schema(example = "Permite consultar")
+	private String descricao;	
 }

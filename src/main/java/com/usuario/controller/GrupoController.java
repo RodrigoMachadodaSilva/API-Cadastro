@@ -21,12 +21,13 @@ import com.usuario.disassembler.GrupoInputDisassembler;
 import com.usuario.domain.entity.Grupo;
 import com.usuario.dto.GrupoInput;
 import com.usuario.dto.GrupoModel;
+import com.usuario.openapi.controller.GrupoControllerOpenApi;
 import com.usuario.repository.GrupoRepository;
 import com.usuario.service.GrupoService;
 
 @RestController
 @RequestMapping("/grupos")
-public class GrupoController {
+public class GrupoController implements GrupoControllerOpenApi {
 
     @Autowired
     private GrupoRepository grupoRepository;
